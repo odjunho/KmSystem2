@@ -14,11 +14,6 @@ namespace KmSystem
             InitializeComponent();
         }
 
-        private void Home_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ConnectingTest_Click(object sender, EventArgs e)
         {
             using(var connection = new SqlConnection(connectionString))
