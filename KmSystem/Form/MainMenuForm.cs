@@ -45,5 +45,10 @@ namespace KmSystem
             SettingsForm settings = new SettingsForm();
             settings.Show();
         }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

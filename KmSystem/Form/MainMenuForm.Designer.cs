@@ -33,6 +33,7 @@
             this.Arrival = new System.Windows.Forms.Button();
             this.Return = new System.Windows.Forms.Button();
             this.Settings = new System.Windows.Forms.Button();
+            this.btnInventory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Sale
@@ -77,7 +78,7 @@
             // 
             // Settings
             // 
-            this.Settings.Location = new System.Drawing.Point(279, 264);
+            this.Settings.Location = new System.Drawing.Point(279, 312);
             this.Settings.Name = "Settings";
             this.Settings.Size = new System.Drawing.Size(253, 42);
             this.Settings.TabIndex = 4;
@@ -85,17 +86,28 @@
             this.Settings.UseVisualStyleBackColor = true;
             this.Settings.Click += new System.EventHandler(this.Settings_Click);
             // 
-            // MainMenu
+            // btnInventory
+            // 
+            this.btnInventory.Location = new System.Drawing.Point(279, 264);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(253, 42);
+            this.btnInventory.TabIndex = 5;
+            this.btnInventory.Text = "Inventory";
+            this.btnInventory.UseVisualStyleBackColor = true;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            // 
+            // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnInventory);
             this.Controls.Add(this.Settings);
             this.Controls.Add(this.Return);
             this.Controls.Add(this.Arrival);
             this.Controls.Add(this.Sale);
             this.Controls.Add(this.Master);
-            this.Name = "MainMenu";
+            this.Name = "MainMenuForm";
             this.Text = "MainMenu";
             this.ResumeLayout(false);
 
@@ -107,6 +119,7 @@
         private System.Windows.Forms.Button Arrival;
         private System.Windows.Forms.Button Return;
         private System.Windows.Forms.Button Settings;
+        private System.Windows.Forms.Button btnInventory;
     }
 }
 

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace KmSystem
@@ -16,9 +18,19 @@ namespace KmSystem
 
         private void ConnectingTest_Click(object sender, EventArgs e)
         {
-            using(var connection = new SqlConnection(connectionString))
+            try
             {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
 
+                    MessageBox.Show("Success connection");
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
