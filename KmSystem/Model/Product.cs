@@ -6,6 +6,7 @@
         public string ProductNo { get; set; }
         public string ProductName { get; set; }
         public string Location { get; set; }
-        public decimal ProductPrice { get; set; }
+        public int ProductPrice { get; set; }
+        public int Inventory { get; set; }
     }
 }

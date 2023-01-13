@@ -24,7 +24,7 @@ namespace KmSystem
             {
                 if(tbProductNo.Text.Length == 0)
                 {
-                    MessageBox.Show("상품입력");
+                    MessageBox.Show("상품번호를 입력해주세요");
                     return;
                 }
 
@@ -46,9 +46,9 @@ namespace KmSystem
                     { 
                         product.ProductNo,
                         product.ProductName,
-                        product.ProductPrice.ToString(),
+                        string.Format("{0:#,##0}", double.Parse(product.ProductPrice.ToString())),
                         "1",
-                        product.ProductPrice.ToString(),
+                        string.Format("{0:#,##0}", double.Parse(product.ProductPrice.ToString())),
                     };
 
                     dgvScanProducts.Rows.Add(row);
@@ -71,16 +71,15 @@ namespace KmSystem
             dgvScanProducts.ColumnCount = 5;
 
             // カラム名を指定
-            dgvScanProducts.Columns[0].HeaderText = "ProductNo";
-            dgvScanProducts.Columns[1].HeaderText = "ProductName";
-            dgvScanProducts.Columns[2].HeaderText = "ProductPrice";
-            dgvScanProducts.Columns[3].HeaderText = "Quantity";
-            dgvScanProducts.Columns[4].HeaderText = "TotalPrice";
+            dgvScanProducts.Columns[0].HeaderText = "상품번호";
+            dgvScanProducts.Columns[1].HeaderText = "상품명";
+            dgvScanProducts.Columns[2].HeaderText = "가격";
+            dgvScanProducts.Columns[3].HeaderText = "수량";
+            dgvScanProducts.Columns[4].HeaderText = "총 가격";
 
             CreateButton("+");
             CreateButton("-");
             CreateButton("X");
-
         }
 
         private void btnSell_Click(object sender, EventArgs e)
@@ -110,15 +109,15 @@ namespace KmSystem
                         {
                             SalesMainId = salesMainId,
                             ProductNo = row.Cells[0].Value,
-                            UnitPrice = row.Cells[2].Value,
+                            UnitPrice = row.Cells[2].Value.ToString().Replace(",", ""),
                             Quantity = row.Cells[3].Value,
-                            TotalPrice = row.Cells[4].Value,
+                            TotalPrice = row.Cells[4].Value.ToString().Replace(",", ""),
                         }, transaction);
                     }
 
                     transaction.Commit();
 
-                    MessageBox.Show("success");
+                    MessageBox.Show("판매 완료");
                     dgvScanProducts.Rows.Clear();
                     tbTotalPrice.Text = "";
                 }
@@ -134,20 +133,20 @@ namespace KmSystem
             if (this.dgvScanProducts.Rows.Count > 0)
             {
                 var quantity = int.Parse(dgv.Rows[e.RowIndex].Cells[3].Value.ToString());
-                var unitPrice = decimal.Parse(dgv.Rows[e.RowIndex].Cells[2].Value.ToString());
+                var unitPrice = int.Parse(dgv.Rows[e.RowIndex].Cells[2].Value.ToString().Replace(",", ""));
 
                 switch (dgv.Columns[e.ColumnIndex].Name)
                 {
                     case "+":
                         quantity += 1;
                         dgv.Rows[e.RowIndex].Cells[3].Value = quantity.ToString();
-                        dgv.Rows[e.RowIndex].Cells[4].Value = (quantity * unitPrice).ToString();
+                        dgv.Rows[e.RowIndex].Cells[4].Value = string.Format("{0:#,##0}", double.Parse((quantity * unitPrice).ToString()));
                         break;
                     case "-":
                         if (quantity == 1) break;
                         quantity -= 1;
                         dgv.Rows[e.RowIndex].Cells[3].Value = quantity.ToString();
-                        dgv.Rows[e.RowIndex].Cells[4].Value = (quantity * unitPrice).ToString();
+                        dgv.Rows[e.RowIndex].Cells[4].Value = string.Format("{0:#,##0}", double.Parse((quantity * unitPrice).ToString()));
                         break;
                     case "X":
                         dgvScanProducts.Rows.RemoveAt(e.RowIndex);
@@ -173,14 +172,16 @@ namespace KmSystem
 
         private string GetTotalPrice()
         {
-            decimal totalPrice = 0;
+            int totalPrice = 0;
 
             foreach(DataGridViewRow row in dgvScanProducts.Rows)
             {
-                totalPrice += decimal.Parse(row.Cells[4].Value.ToString());
+                var price = row.Cells[4].Value.ToString().Replace(",", "");
+
+                totalPrice += int.Parse(price);
             }
 
-            return totalPrice.ToString();
+            return string.Format("{0:#,##0}", double.Parse(totalPrice.ToString()));
         }
 
         private void tbProductNo_KeyDown(object sender, KeyEventArgs e)

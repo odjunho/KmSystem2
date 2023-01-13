@@ -42,9 +42,10 @@
             // 
             // tbProductNo
             // 
-            this.tbProductNo.Location = new System.Drawing.Point(82, 27);
+            this.tbProductNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbProductNo.Location = new System.Drawing.Point(116, 34);
             this.tbProductNo.Name = "tbProductNo";
-            this.tbProductNo.Size = new System.Drawing.Size(170, 21);
+            this.tbProductNo.Size = new System.Drawing.Size(170, 30);
             this.tbProductNo.TabIndex = 0;
             this.tbProductNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbProductNo_KeyDown);
             // 
@@ -57,50 +58,58 @@
             // lbProductNo
             // 
             this.lbProductNo.AutoSize = true;
-            this.lbProductNo.Location = new System.Drawing.Point(12, 30);
+            this.lbProductNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProductNo.Location = new System.Drawing.Point(12, 33);
             this.lbProductNo.Name = "lbProductNo";
-            this.lbProductNo.Size = new System.Drawing.Size(64, 12);
+            this.lbProductNo.Size = new System.Drawing.Size(98, 31);
             this.lbProductNo.TabIndex = 2;
-            this.lbProductNo.Text = "ProductNo";
+            this.lbProductNo.Text = "상품번호";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(258, 21);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(304, 12);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(55, 36);
+            this.btnAdd.Size = new System.Drawing.Size(100, 69);
             this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "ADD";
+            this.btnAdd.Text = "추가";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSell
             // 
-            this.btnSell.Location = new System.Drawing.Point(733, 21);
+            this.btnSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSell.Location = new System.Drawing.Point(980, 12);
             this.btnSell.Name = "btnSell";
-            this.btnSell.Size = new System.Drawing.Size(55, 36);
+            this.btnSell.Size = new System.Drawing.Size(100, 69);
             this.btnSell.TabIndex = 6;
-            this.btnSell.Text = "Sell";
+            this.btnSell.Text = "판매";
             this.btnSell.UseVisualStyleBackColor = true;
             this.btnSell.Click += new System.EventHandler(this.btnSell_Click);
             // 
             // dgvScanProducts
             // 
             this.dgvScanProducts.AllowUserToAddRows = false;
+            this.dgvScanProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvScanProducts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvScanProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvScanProducts.Location = new System.Drawing.Point(12, 63);
+            this.dgvScanProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvScanProducts.Location = new System.Drawing.Point(11, 99);
             this.dgvScanProducts.Name = "dgvScanProducts";
+            this.dgvScanProducts.ReadOnly = true;
             this.dgvScanProducts.RowHeadersWidth = 51;
             this.dgvScanProducts.RowTemplate.Height = 23;
-            this.dgvScanProducts.Size = new System.Drawing.Size(776, 387);
+            this.dgvScanProducts.Size = new System.Drawing.Size(1069, 533);
             this.dgvScanProducts.TabIndex = 7;
             this.dgvScanProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvScanProducts_CellContentClick);
             // 
             // tbTotalPrice
             // 
-            this.tbTotalPrice.Location = new System.Drawing.Point(416, 30);
+            this.tbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTotalPrice.Location = new System.Drawing.Point(760, 34);
             this.tbTotalPrice.Name = "tbTotalPrice";
             this.tbTotalPrice.ReadOnly = true;
-            this.tbTotalPrice.Size = new System.Drawing.Size(170, 21);
+            this.tbTotalPrice.Size = new System.Drawing.Size(170, 30);
             this.tbTotalPrice.TabIndex = 8;
             this.tbTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -108,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1092, 644);
             this.Controls.Add(this.tbTotalPrice);
             this.Controls.Add(this.dgvScanProducts);
             this.Controls.Add(this.btnSell);
@@ -116,7 +125,7 @@
             this.Controls.Add(this.lbProductNo);
             this.Controls.Add(this.tbProductNo);
             this.Name = "SaleForm";
-            this.Text = "Sale";
+            this.Text = "판매";
             ((System.ComponentModel.ISupportInitialize)(this.dgvScanProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

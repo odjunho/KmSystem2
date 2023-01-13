@@ -27,17 +27,11 @@ namespace KmSystem
         {
             SaleForm sale = new SaleForm();
             sale.Show();
-
         }
-
-        private void Return_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Arrival_Click(object sender, EventArgs e)
         {
-
+            ArrivalForm arrival = new ArrivalForm();
+            arrival.Show();
         }
 
         private void Settings_Click(object sender, EventArgs e)
@@ -48,7 +42,8 @@ namespace KmSystem
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-
+            InventoryForm inventory = new InventoryForm();
+            inventory.Show();
         }
     }
 }

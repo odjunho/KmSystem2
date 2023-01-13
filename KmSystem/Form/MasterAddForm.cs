@@ -23,7 +23,7 @@ namespace KmSystem
                 SetProduct();
                 SetProductPrice();
 
-                MessageBox.Show("Add product");
+                MessageBox.Show("상품 등록 성공");
 
                 InitializeTextBox();
             }

@@ -4,6 +4,7 @@ using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KmSystem
 {
@@ -34,9 +35,11 @@ namespace KmSystem
                 {
                     connection.Open();
 
-                    var sql = @"select p.ProductId, p.ProductNo, p.ProductName, pp.ProductPrice, p.Location
+                    var sql = @"select p.ProductId, p.ProductNo, p.ProductName, pp.ProductPrice, p.Location, isnull(ad.Quantity, 0) - isnull(sd.Quantity, 0) as Inventory
                                 from Product p
                                 inner join ProductPrice pp on p.ProductNo = pp.ProductNo
+                                left join (select ProductNo, sum(Quantity) as Quantity from ArrivalDetail group by ProductNo) ad on p.ProductNo = ad.ProductNo
+                                left join (select ProductNo, sum(Quantity) as Quantity from SalesDetail group by ProductNo) sd on p.ProductNo = sd.ProductNo
                                 where p.IsDeleted = 0 ";
 
                     if (tbProductNo.Text.Length > 0)
@@ -57,8 +60,9 @@ namespace KmSystem
                         {
                             product.ProductNo,
                             product.ProductName,
-                            product.ProductPrice.ToString(),
+                            string.Format("{0:#,##0}", double.Parse(product.ProductPrice.ToString())),
                             product.Location,
+                            product.Inventory.ToString(),
                         };
 
                         dgvProducts.Rows.Add(row);
@@ -69,27 +73,28 @@ namespace KmSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                tbProductNo.Text = "";
+            }
         }
 
         private void InitializeProducts()
         {
-            dgvProducts.ColumnCount = 4;
+            dgvProducts.ColumnCount = 5;
 
             // カラム名を指定
-            dgvProducts.Columns[0].HeaderText = "ProductNo";
-            dgvProducts.Columns[1].HeaderText = "ProductName";
-            dgvProducts.Columns[2].HeaderText = "ProductPrice";
-            dgvProducts.Columns[3].HeaderText = "Location";
+            dgvProducts.Columns[0].HeaderText = "상품번호";
+            dgvProducts.Columns[1].HeaderText = "상품명";
+            dgvProducts.Columns[2].HeaderText = "가격";
+            dgvProducts.Columns[3].HeaderText = "위치";
+            dgvProducts.Columns[4].HeaderText = "재고";
+        }
 
-            //// Delete Button
-            //var column = new DataGridViewButtonColumn();
-            ////列の名前を設定
-            ////column.Name = "EDIT";
-            ////全てのボタンに"詳細閲覧"と表示する
-            //column.UseColumnTextForButtonValue = true;
-            //column.Text = "EDIT";
-            ////DataGridViewに追加する
-            //dgvProducts.Columns.Add(column);
+        private void tbProductNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnSearch.PerformClick();
         }
     }
 }
